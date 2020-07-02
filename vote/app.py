@@ -25,6 +25,7 @@ def hello():
     vote = None
 
     if request.method == 'POST':
+        app.logger.info('in POST')
         redis = get_redis()
         vote = request.form['vote']
         data = json.dumps({'voter_id': voter_id, 'vote': vote})
