@@ -26,11 +26,13 @@ def hello():
 
     if request.method == 'POST':
         app.logger.info('in POST')
+        app.logger.error(data)
         redis = get_redis()
         vote = request.form['vote']
         data = json.dumps({'voter_id': voter_id, 'vote': vote})
         redis.rpush('votes', data)
         app.logger.info(data)
+        app.logger.error(data)
 
     resp = make_response(render_template(
         'index.html',
